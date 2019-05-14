@@ -13,7 +13,7 @@ class array_appender
 
     public:
 
-        array_appender(T* t, int n) {
+        array_appender(T* t, const int& n) {
             for (int i = 0;i < n;++i) arrays.push_back((t+i));
         }
 
@@ -21,7 +21,7 @@ class array_appender
             for (int i = 0;i < v.size(); ++i) arrays.push_back(&v[i]);
         }
 
-        void append(T* t, int n) {
+        void append(T* t, const int& n) {
             for (int i = 0; i < n; ++i) arrays.push_back((t+i));
         }
 
@@ -33,11 +33,11 @@ class array_appender
             return arrays.size();
         }
 
-        const T& at(int index) const {
+        const T& at(const int& index) const {
             return *arrays[index];
         }
 
-        T& operator[] (int index) const {
+        T& operator[] (const int& index) const {
             return *arrays[index];
         }
 
@@ -46,7 +46,7 @@ class array_appender
             int index;
 
             public:
-                iterator(array_appender<T>* parent ,int index) {
+                iterator(array_appender<T>* parent , const int& index) {
                     this->parent = parent;
                     this->index = index;
                 }
@@ -70,10 +70,6 @@ class array_appender
 
                 bool operator!=(const iterator& it) const {
                     return !(*this == it);
-                }
-
-                int operator-(const iterator& it) const {
-                    return index - it.index;
                 }
 
         };
